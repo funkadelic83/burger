@@ -1,15 +1,16 @@
 $(function() {
     $(".devour-burger").on("click", function(event) {
         var id = $(this).data("id");
-        var devourThis = $(this).data("devourThis");
+        // var devourThis = $(this).data("devourthis");
+        var devourThis = 1;
 
-        var devourState = {
-            devour: devourThis
+        var devourThisState = {
+            devoured: devourThis
         };
 
-        $.ajax("/api/burgers" + id, {
+        $.ajax("/api/burgers/" + id, {
             type: "PUT",
-            data: devourState
+            data: devourThisState
         }).then(
             function() {
                 console.log("This burger has been devoured!", devourThis);

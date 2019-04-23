@@ -2,11 +2,9 @@ var connection = require("./connection.js");
 
 function printQuestionMarks(num) {
     var arr = [];
-  
     for (var i = 0; i < num; i++) {
       arr.push("?");
     }
-  
     return arr.toString();
   }
   
@@ -69,14 +67,25 @@ var orm = {
 
     },
     //FIGURE THIS OUT
-    updateOne: function(tableInput, colToSearch, valOfCol) {
-        var queryString = "UPDATE burgers SET (burger_name, devoured) VALUES (??, ??);";
-        connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
-            if (err) throw err;
+    updateOne: function(table, objColVals, condition, cb) {
+        var queryString = "UPDATE " + table;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+        
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
             console.log(result);
         });
-
     }
+
+
+
     
 };
 
