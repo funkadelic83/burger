@@ -3,10 +3,10 @@
 
 <ul>
     {{#each burgers}}
-        {{#unless devoured}}
-        {{> burgers/burger-block devoured=false}}
-{{/unless}}
-{{/each}}
+    {{#unless devoured}}
+    {{burger-block}}
+    {{/unless}}
+    {{/each}}
     {{!-- <li>
         <p>Type: {{burger_name}}</p>
         <p>Devoured: {{devoured}}</p>
@@ -15,20 +15,18 @@
 </ul>
 
 <h1>Add a Burger</h1>
-<form id="addBurger">
-<textarea rows="4" cols="50" name="addBurger" id="newBurger">
-    Enter a burger you'd like to eat.
-</textarea>
-<input type="submit" id="submit">
+<form class="create-form">
+    {{!-- <textarea rows="4" cols="50" name="addBurger" id="newBurger"> --}}
+{{!-- </textarea> --}}
+<div class="form-group">
+<label for="ca">Burger Name:</label>
+<input type="text" id="burger-name" name="name">
+</div>
+
+<div class="form-group">
+<label for="devoured">Devoured?</label><br>
+<input type="radio" name="devoured" value="1">Devoured
+<input type="radio" name="devoured" value="0" checked>Not Devoured
+</div>
+<button type="submit" id="submit">Add Burger</button>
 </form>
-<p>Enter a burger you want to eat and click the "Submit" button.</p>
-
-
-{{!-- find the JS file for this --}}
-{{!-- <script type="text.javascript"></script>
-    $("#submit").on("click", function (event) {
-        console.log("Submit button hits");
-        event.preventDefault();
-        //INSERT FUNCTIONALITY
-    })
-</script> --}}

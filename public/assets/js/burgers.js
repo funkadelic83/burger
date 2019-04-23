@@ -1,9 +1,9 @@
 $(function() {
-    $(".devour").on("click", function(event) {
+    $(".devour-burger").on("click", function(event) {
         var id = $(this).data("id");
         var devourThis = $(this).data("devourThis");
 
-        var devourState ={
+        var devourState = {
             devour: devourThis
         };
 
@@ -17,14 +17,13 @@ $(function() {
             }
         );
     });  
-});
 
-$("#submit").on("click", function(event) {
+$(".create-form").on("submit", function(event) {
     event.preventDefault();
     console.log("Submit button works");
     var newBurger = {
-        burger_name: $("#newBurger").val().trim(),
-        devoured: 0
+        burger_name: $("#burger-name").val().trim(),
+        devoured: $("[name=devoured]:checked").val().trim()
     };
     console.log(newBurger);
 
@@ -37,5 +36,9 @@ $("#submit").on("click", function(event) {
             location.reload();
         }
     );
-    
+});
+
+
+
+
 });
